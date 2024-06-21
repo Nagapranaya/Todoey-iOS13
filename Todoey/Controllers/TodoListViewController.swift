@@ -24,6 +24,7 @@ class TodoListViewController: UITableViewController {
         // Do any additional setup after loading the view.
         let newItem = Item()
         newItem.title = "Find Mike"
+        newItem.done = true
         itemArray.append(newItem)
         
         let newItem1 = Item()
@@ -38,18 +39,20 @@ class TodoListViewController: UITableViewController {
         return itemArray.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         cell.textLabel?.text = itemArray[indexPath.row].title
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(itemArray[indexPath.row])
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        if  itemArray[indexPath.row].done == false{
-            itemArray[indexPath.row].done = true
-        }else{
-            itemArray[indexPath.row].done = false
-        }
+        //if  itemArray[indexPath.row].done == false{
+        //    itemArray[indexPath.row].done = true
+       // }else{
+        //    itemArray[indexPath.row].done = false
+       // }
         
         if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark{
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
